@@ -1,3 +1,5 @@
+// Sol2. string의 find 함수로 666 포함 여부 확인하기
+
 #include <iostream>
 #include <string>
 using namespace std;

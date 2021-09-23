@@ -1,3 +1,5 @@
+// Sol1. 나머지, 몫 연산으로 666 포함 여부 확인하기
+
 #include<iostream>
 using namespace std;
 
