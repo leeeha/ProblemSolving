@@ -14,7 +14,6 @@ int main()
 		cin >> arr[i];
 		sum += arr[i] - 48; // char형 '0' == 십진수 48
 	}
-
 	cout << sum;
 
 	delete[] arr;
