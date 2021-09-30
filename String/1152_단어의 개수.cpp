@@ -6,7 +6,7 @@ using namespace std;
 int main()
 {
 	string str;
-	getline(cin, str);
+	getline(cin, str); // 공백을 포함해서 문자열 입력 받기
 
 	int cnt = 0;
 	int n = str.length();
