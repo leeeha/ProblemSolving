@@ -10,7 +10,7 @@ bool isVPS(string str) {
         char ch = str[i];
 
         if (ch == '(') { // 여는 괄호는 push
-            s.push(str[i]);
+            s.push(ch);
         }
         else { // 닫는 괄호가 스택에 들어올 때 
             if (s.empty()) { // 스택이 비어있으면 
