@@ -44,6 +44,7 @@ int main() {
 
 		// 한 줄씩 입력 받아 확인하기
 		for (int i = 0; i < n; i++) {
+
 			// 현재 줄에서 '가장 작은 수' 찾기
 			int min_value = 10001;
 			for (int j = 0; j < m; j++) {
@@ -51,10 +52,9 @@ int main() {
 				cin >> x;
 				min_value = min(min_value, x);
 			}
-			// '가장 작은 수'들 중에서 가장 큰 수 찾기
-			result = max(result, min_value);
 
-			// 다음 행으로 넘어갈 때마다 result 갱신
+			// 각 행의 '가장 작은 수'들 중에서 가장 큰 수 찾기
+			result = max(result, min_value);
 		}
 
 		cout << result << '\n'; // 최종 답안 출력
