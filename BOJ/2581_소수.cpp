@@ -7,7 +7,7 @@ using namespace std;
 // 단, M이상 N이하의 자연수 중 소수가 없을 경우는 첫째 줄에 -1을 출력한다.
 
 bool isPrimeNumber(int x) {
-    if (x < 2) // 음수가 입력될 수도 있으니 예외 처리
+    if (x < 2) // 소수의 정의에서 벗어난 수들은 예외 처리
         return false;
 
     // 2부터 x의 제곱근까지 모든 수를 확인하며
