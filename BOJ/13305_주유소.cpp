@@ -8,8 +8,7 @@ using namespace std;
 
 int main()
 {	
-	// 도시 개수 (최대 10만)
-	int n;
+	int n; // 도시 개수 (최대 10만)
 	cin >> n;
 	
 	int tmp;
