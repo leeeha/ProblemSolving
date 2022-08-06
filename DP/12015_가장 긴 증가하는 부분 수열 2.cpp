@@ -22,11 +22,14 @@ int main()
 		if(L.size() == 0) 
 			L.push_back(arr[i]);
 		else{
+			// 마지막 원소보다 큰 값이 들어오면 
 			int last = L.size() - 1;
 			if(L[last] < arr[i]){
+				// 그대로 푸시 
 				L.push_back(arr[i]);
 			}else{
-				// arr[i] 이상의 값이 처음 나오는 위치 반환 
+				// 마지막 원소보다 작은 값이 들어오면 
+				// arr[i] 이상의 값이 처음 등장하는 위치 반환 
 				auto iter = lower_bound(L.begin(), L.end(), arr[i]);
 				*iter = arr[i]; // 그 위치를 arr[i]로 대체 
 			}
