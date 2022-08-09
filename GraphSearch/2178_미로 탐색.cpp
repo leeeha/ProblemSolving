@@ -14,7 +14,6 @@ int bfs(int x, int y){
 	queue<pair<int, int>> q; 
 	q.push({x, y});
 
-	// 큐가 빌 때까지 반복
 	while(!q.empty()){
 		int x = q.front().first;
 		int y = q.front().second;
@@ -31,12 +30,9 @@ int bfs(int x, int y){
 			// 갈 수 없는 길인 경우 무시
 			if(graph[nx][ny] == 0) continue;
 
-			// 방문한 적 없는 노드인 경우 
 			if(graph[nx][ny] == 1){
 				// 현재 노드까지 이동한 최소 칸 수 업데이트!
 				graph[nx][ny] = graph[x][y] + 1;
-				
-                // 다음 노드 처리하도록 큐에 좌표 저장하기 
 				q.push({nx, ny}); 
 			}
 		}
