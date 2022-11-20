@@ -1,3 +1,5 @@
+// https://school.programmers.co.kr/learn/courses/30/lessons/134240
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -25,12 +27,7 @@ string solution(vector<int> food) {
 }
 
 int main(){
-	vector<int> food; 
-	food.push_back(1);
-	food.push_back(3);
-	food.push_back(4);
-	food.push_back(6);
-	
+	vector<int> food {1,3,4,6};
 	cout << solution(food) << endl; 
 
 	return 0; 
