@@ -20,7 +20,7 @@ int main() {
 	cin.tie(0);
 
 	cin >> A >> B; 
-	dfs(A, 1); // 연산할 숫자, 연산한 횟수 
+	dfs(A, 1); // 연산할 숫자, 연산한 횟수 (트리의 높이)
 
 	if(ans == 1e9) cout << "-1";
 	else cout << ans; 
