@@ -1,8 +1,4 @@
 #include <iostream>
-#include <vector>
-#include <cstring> 
-#include <algorithm> 
-#include <utility>
 using namespace std;
 
 const int MAX = 100; 
