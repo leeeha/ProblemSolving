@@ -10,6 +10,9 @@ unordered_set<string> myset; // 중복 제거해서 저장
 
 int main()
 {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+
 	string str; 
 	cin >> str; 
 
