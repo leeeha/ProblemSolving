@@ -1,58 +1,60 @@
 #include <iostream>
+#include <vector>
+#include <algorithm>
+#include <utility> 
+#include <cstring> 
 #include <queue>
-#include <utility> // pair
 using namespace std;
 
-int n, m; // n행 m열 
-int graph[101][101]; 
+const int MAX = 101; 
+int graph[MAX][MAX]; 
+bool visited[MAX][MAX]; 
 
-// 이동할 네 가지 방향 정의 (상하좌우: x는 행, y는 열)
-int dx[] = { -1, 1, 0, 0 };
-int dy[] = { 0, 0, -1, 1 };
+int n, m; 
+int dx[] = {-1, 1, 0, 0}; 
+int dy[] = {0, 0, -1, 1}; 
 
-int bfs(int x, int y){
-	queue<pair<int, int>> q; 
+int bfs(int x, int y){ 
+	queue<pair<int, int>> q;
 	q.push({x, y});
+	visited[x][y] = true;
 
-	while(!q.empty()){
-		int x = q.front().first;
-		int y = q.front().second;
-		q.pop();
+	while(!q.empty()){ 
+		int row = q.front().first; 
+		int col = q.front().second;
+		q.pop(); 
 
-		// 현재 위치에서 상하좌우로 이동 가능한지 확인 
-		for(int i = 0; i < 4; i++){
-			int nx = x + dx[i];
-			int ny = y + dy[i];
-
-			// 미로 공간을 벗어난 경우 무시
-			if(nx < 0 || nx >= n || ny < 0 || ny >= m) continue;
-
-			// 갈 수 없는 길인 경우 무시
-			if(graph[nx][ny] == 0) continue;
-
-			if(graph[nx][ny] == 1){
-				// 현재 노드까지 이동한 최소 칸 수 업데이트!
-				graph[nx][ny] = graph[x][y] + 1;
+		// 현재 노드와 상하좌우로 연결된 노드 탐색 
+		for(int i = 0; i < 4; i++){ 
+			int nx = row + dx[i]; 
+			int ny = col + dy[i]; 
+	
+			if(nx < 0 || nx >= n || ny < 0 || ny >= m) continue; 
+	
+			if(graph[nx][ny] == 1 && !visited[nx][ny]){ 
+				graph[nx][ny] = graph[row][col] + 1; 
 				q.push({nx, ny}); 
+				visited[nx][ny] = true; 
 			}
 		}
 	}
-
-	// (n, m) 지점까지의 최단 거리 반환
-	return graph[n - 1][m - 1];
+	
+	return graph[n - 1][m - 1]; 
 }
 
-int main()
-{	
+int main() {
+	//ios::sync_with_stdio(0); 
+	cin.tie(0); 
+
 	cin >> n >> m;
 
 	for(int i = 0; i < n; i++){
 		for(int j = 0; j < m; j++){
-			scanf("%1d", &graph[i][j]);
+			scanf("%1d", &graph[i][j]); 
 		}
 	}
 
-	cout << bfs(0, 0) << "\n";
+	cout << bfs(0, 0);
 
-	return 0;
+    return 0;
 }
