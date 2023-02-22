@@ -1,116 +1,116 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
+#include <utility> 
+#include <cstring> 
 #include <queue>
-#define MAX 20001
+#define MAX 20001 
 #define RED 1
 #define BLUE 2
 using namespace std;
 
-int k, v, e; // 테스트 케이스, 정점, 간선 개수 
-vector<int> graph[MAX];
-int visited[MAX];
+int v, e; 
+vector<int> graph[MAX]; 
+int colored[MAX]; 
 
 void bfs(int start){
-	queue<int> q;
-	int color = RED;
-	visited[start] = color;
-	q.push(start);
+	queue<int> q; 
+	q.push(start); 
+	colored[start] = RED; 
 
-	// 큐가 빌 때까지 반복 
-	while(!q.empty()){
-		int x = q.front();
-		q.pop();
+	while(!q.empty()){ 
+		int x = q.front(); 
+		q.pop(); 
 
-		// 인접 노드를 반대되는 색상으로 설정 
-		if(visited[x] == RED){
-			color = BLUE;
-		}else if(visited[x] == BLUE){
-			color = RED;
+		// 큐에서 꺼낸 노드는 red와 blue 중에 하나 
+		int color = 0; 
+		if(colored[x] == RED){ 
+			color = BLUE; 
+		}else{
+			color = RED; 
 		}
 
+		// 인접한 정점인데 아직 색상이 없는 경우, 반대되는 색상으로 칠하기 
 		for(int i = 0; i < graph[x].size(); i++){
-			int y = graph[x][i];
-			if(!visited[y]){
-				visited[y] = color;
-				q.push(y);
+			int y = graph[x][i]; 
+			if(!colored[y]){
+				q.push(y); 
+				colored[y] = color; 
 			}
 		}
 	}
 }
 
 void dfs(int x){
-	if(!visited[x]){
-		visited[x] = RED;
+	if(!colored[x]){ 
+		colored[x] = RED; 
 	}
 
-	for(int i = 0; i < graph[x].size(); i++){
-		int y = graph[x][i];
-		
-        // 인접 노드를 반대되는 색상으로 설정 
-		if(!visited[y]){
-			if(visited[x] == RED){
-				visited[y] = BLUE;
-			}else if(visited[x] == BLUE){
-				visited[y] = RED;
-			}
+	int color = 0; 
+	if(colored[x] == RED){ 
+		color = BLUE;
+	}else {
+		color = RED; 
+	}
 
-			dfs(y); // 재귀 호출 
+	for(int i = 0; i < graph[x].size(); i++){ 
+		int y = graph[x][i]; 
+		if(!colored[y]){ 
+			colored[y] = color;
+			dfs(y); 
 		}
 	}
 }
 
 bool isBipartite(){
+	// 그래프를 순회하면서 
+	// 인접한 정점이 다른 색상으로 칠해져있는지 검사 
 	for(int i = 1; i <= v; i++){
 		for(int j = 0; j < graph[i].size(); j++){
 			int next = graph[i][j];
-            
-            // 인접 노드가 같은 색상이면 이분 그래프 X
-			if(visited[i] == visited[next]){
-				return false;
+
+			// i번째 정점에 연결된 모든 정점이 서로 다른 색상이면 이분 그래프 
+			// 하나라도 같은 색상이 있으면 이분 그래프 x 
+			if(colored[i] == colored[next]){
+				return false; 
 			}
 		}
 	}
-
-	return true;
+	return true; 
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
-    cin.tie(NULL);
+int main() {
+	ios::sync_with_stdio(0); 
+	cin.tie(0); 
 
-	cin >> k;
+	int k;
+	cin >> k; 
+
 	while(k--){
-		cin >> v >> e;
+		cin >> v >> e; 
 
-		// 그래프 정보 입력 
 		for(int i = 0; i < e; i++){
-			int first, second;
-			cin >> first >> second;
-			graph[first].push_back(second);
-			graph[second].push_back(first);
+			int x, y; 
+			cin >> x >> y; 
+			graph[x].push_back(y); 
+			graph[y].push_back(x); 
 		}
 
-		// bfs 또는 dfs 탐색
+		// 1~v번까지 인접한 정점은 서로 다른 색상으로 구분한다. 
+		// 한번 색칠이 된 건 스킵한다. 
 		for(int i = 1; i <= v; i++){
-			if(!visited[i]){
-				bfs(i);
-				//dfs(i);
+			if(!colored[i]){
+				dfs(i); 
 			}
 		}
 
-		if(isBipartite()){
-			cout << "YES\n";
-		}else{
-			cout << "NO\n";
-		}
+		if(isBipartite()) cout << "YES\n";
+		else cout << "NO\n";
 
-		// 그 다음 테스트 케이스 검사를 위해 초기화 
-		for(int i = 0; i <= v; i++){
-			graph[i].clear();
-			visited[i] = false;
-		}
+		memset(graph, 0, sizeof(graph));
+		memset(colored, 0, sizeof(colored));
 	}
-	
-	return 0;
+
+    return 0;
 }
+
