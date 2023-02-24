@@ -5,25 +5,25 @@ using namespace std;
 
 int dp[21][21][21]; 
 
-// top-down (ÇÏÇâ½Ä, Àç±ÍÇÔ¼ö, ¸Þ¸ðÀÌÁ¦ÀÌ¼Ç) 
+// top-down (í•˜í–¥ì‹, ìž¬ê·€í•¨ìˆ˜, ë©”ëª¨ì´ì œì´ì…˜) 
 int w(int a, int b, int c){
-	// a, b, c Áß¿¡ Àû¾îµµ ÇÏ³ª°¡ 0ÀÌ°Å³ª À½¼öÀÎ °æ¿ì 
+	// a, b, c ì¤‘ì— ì ì–´ë„ í•˜ë‚˜ê°€ 0ì´ê±°ë‚˜ ìŒìˆ˜ì¸ ê²½ìš° 
 	if(a <= 0 || b <= 0 || c <= 0){
 		return 1; 
 	}
 
-	// a, b, c Áß¿¡ Àû¾îµµ ÇÏ³ª°¡ 20º¸´Ù Å« °æ¿ì 
+	// a, b, c ì¤‘ì— ì ì–´ë„ í•˜ë‚˜ê°€ 20ë³´ë‹¤ í° ê²½ìš° 
 	if(a > 20 || b > 20 || c > 20){
 		return w(20, 20, 20); 
 	}
 
-	// a, b, c´Â 0º¸´Ù Å©¸é¼­ 20º¸´Ù ÀÛ°Å³ª °°´Ù. 
-	// dp Å×ÀÌºí¿¡ ÀúÀåµÈ °ªÀÌ ÀÖÀ¸¸é ±×´ë·Î »ç¿ëÇÑ´Ù. 
+	// a, b, cëŠ” 0ë³´ë‹¤ í¬ë©´ì„œ 20ë³´ë‹¤ ìž‘ê±°ë‚˜ ê°™ë‹¤. 
+	// dp í…Œì´ë¸”ì— ì €ìž¥ëœ ê°’ì´ ìžˆìœ¼ë©´ ê·¸ëŒ€ë¡œ ì‚¬ìš©í•œë‹¤. 
 	if(dp[a][b][c] != 0){ 
 		return dp[a][b][c]; 
 	}
 
-	// ¸Þ¸ðÀÌÁ¦ÀÌ¼Ç 
+	// ë©”ëª¨ì´ì œì´ì…˜ 
 	if(a < b && b < c){
 		dp[a][b][c] = w(a, b, c-1) + w(a, b-1, c-1) - w(a, b-1, c); 
 		return dp[a][b][c]; 

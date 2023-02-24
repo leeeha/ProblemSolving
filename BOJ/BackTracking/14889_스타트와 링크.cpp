@@ -31,9 +31,9 @@ void updateMinVal() {
 		}
 	}
 
-	// °¢ ÆÀÀÇ ´É·ÂÄ¡ °è»ê 
-	// °¢ ÆÀ¿øµéÀÇ ¹øÈ£¿¡ ¸Â´Â Çà°ú ¿­À» »Ì¾Æ¼­ 
-	// ±× 2Â÷¿ø ¹è¿­ÀÇ ¸ðµç ¿ø¼ÒµéÀÇ ÇÕÀ» ±¸ÇÏ¸é µÈ´Ù. 
+	// ê° íŒ€ì˜ ëŠ¥ë ¥ì¹˜ ê³„ì‚° 
+	// ê° íŒ€ì›ë“¤ì˜ ë²ˆí˜¸ì— ë§žëŠ” í–‰ê³¼ ì—´ì„ ë½‘ì•„ì„œ 
+	// ê·¸ 2ì°¨ì› ë°°ì—´ì˜ ëª¨ë“  ì›ì†Œë“¤ì˜ í•©ì„ êµ¬í•˜ë©´ ëœë‹¤. 
 	for(int i = 0; i < n/2; i++){ 
 		for(int j = 0; j < n/2; j++){  
 			g1 += arr[start[i]][start[j]]; // 0~2: 00 01 02 10 11 12 20 21 22 
@@ -41,20 +41,20 @@ void updateMinVal() {
 		} 
 	}
 
-	// ÃÖ¼Ò Â÷ÀÌ ±¸ÇÏ±â 
+	// ìµœì†Œ ì°¨ì´ êµ¬í•˜ê¸° 
 	int gap = abs(g1 - g2); 
 	if(gap < minVal){ 
 		minVal = gap; 
 	}
 }
 
-void dfs(int cnt, int idx){ // »ÌÀº °³¼ö, Å½»öÀ» ÁøÇàÇÒ ÀÎµ¦½º  
+void dfs(int cnt, int idx){ // ë½‘ì€ ê°œìˆ˜, íƒìƒ‰ì„ ì§„í–‰í•  ì¸ë±ìŠ¤  
 	if(cnt == n/2){ 
-		updateMinVal(); // ÃÖ¼Ú°ª °»½Å 
+		updateMinVal(); // ìµœì†Ÿê°’ ê°±ì‹  
 		return; 
 	}
 
-	// n¸í Áß¿¡ n/2¸íÀ» ¼±ÅÃÇÏ´Â Á¶ÇÕ ±¸ÇÏ±â (i´Â idxºÎÅÍ ½ÃÀÛ) 
+	// nëª… ì¤‘ì— n/2ëª…ì„ ì„ íƒí•˜ëŠ” ì¡°í•© êµ¬í•˜ê¸° (iëŠ” idxë¶€í„° ì‹œìž‘) 
 	for(int i = idx; i < n; i++){ 
 		if(!selected[i]){ 
 			selected[i] = true; 
