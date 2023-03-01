@@ -25,6 +25,7 @@ int solution(vector<int> priorities, int location) {
             q.pop(); 
             num++; // 출력한 인쇄물의 개수 갱신 
             
+            // location 위치의 원소는 몇번째로 출력하는지 리턴 
             if(index == location) return num; 
         }else{
             q.pop(); 
