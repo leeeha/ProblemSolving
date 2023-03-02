@@ -12,7 +12,7 @@ int solution(vector<int> scoville, int K) {
         pq.push(-e); // 최소 힙 
     }
     
-    while(-pq.top() < K){
+    while(-pq.top() < K){ // 최솟값이 K 이상이 될 때까지 반복 
         if(pq.size() == 1) return -1; 
         
         int first = -pq.top();
