@@ -11,7 +11,7 @@ void dfs(vector<int> nums, int target, int result, int idx){
             answer++; 
         }
         
-        return; // ±× ´ÙÀ½ °æ¿ìÀÇ ¼ö·Î ÀÌµ¿ 
+        return; // ê·¸ ë‹¤ìŒ ê²½ìš°ì˜ ìˆ˜ë¡œ ì´ë™ 
     }
     
     dfs(nums, target, result + nums[idx], idx + 1); 
@@ -19,7 +19,7 @@ void dfs(vector<int> nums, int target, int result, int idx){
 }
 
 int solution(vector<int> nums, int target) {
-    // result: ÇöÀç±îÁöÀÇ ¿¬»ê °á°ú, idx: +/- ¿¬»êÀ» ÁøÇàÇÒ ÀÎµ¦½º 
+    // result: í˜„ì¬ê¹Œì§€ì˜ ì—°ì‚° ê²°ê³¼, idx: +/- ì—°ì‚°ì„ ì§„í–‰í•  ì¸ë±ìŠ¤ 
     dfs(nums, target, 0, 0); 
     
     return answer; 

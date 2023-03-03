@@ -10,40 +10,40 @@ bool compare1(pair<string, int> a, pair<string, int> b){
 }
 
 bool compare2(pair<pair<string, int>, int> a, pair<pair<string, int>, int> b){
-    // Àç»ı È½¼ö°¡ °°À¸¸é °íÀ¯ ¹øÈ£°¡ ³·Àº ¼øÀ¸·Î Á¤·Ä 
+    // ì¬ìƒ íšŸìˆ˜ê°€ ê°™ìœ¼ë©´ ê³ ìœ  ë²ˆí˜¸ê°€ ë‚®ì€ ìˆœìœ¼ë¡œ ì •ë ¬ 
     if(a.first.second == b.first.second){
         return a.second < b.second; 
     }
     
-    // ±âº»ÀûÀ¸·Î´Â Àç»ı È½¼ö°¡ ³ôÀº ¼øÀ¸·Î Á¤·Ä 
+    // ê¸°ë³¸ì ìœ¼ë¡œëŠ” ì¬ìƒ íšŸìˆ˜ê°€ ë†’ì€ ìˆœìœ¼ë¡œ ì •ë ¬ 
     return a.first.second > b.first.second; 
 }
 
 vector<int> solution(vector<string> genres, vector<int> plays) {
     vector<int> answer;
     
-    // °¢ Àå¸£º° Àç»ı È½¼ö¿¡ µû¶ó ¿ì¼±¼øÀ§¸¦ Á¤ÇÑ´Ù. 
-    map<string, int> m; // °¢ Àå¸£º° Àç»ıÈ½¼ö 
-    vector<pair<pair<string, int>, int>> v; // Àå¸£, Àç»ıÈ½¼ö, °íÀ¯¹øÈ£ 
+    // ê° ì¥ë¥´ë³„ ì¬ìƒ íšŸìˆ˜ì— ë”°ë¼ ìš°ì„ ìˆœìœ„ë¥¼ ì •í•œë‹¤. 
+    map<string, int> m; // ê° ì¥ë¥´ë³„ ì¬ìƒíšŸìˆ˜ 
+    vector<pair<pair<string, int>, int>> v; // ì¥ë¥´, ì¬ìƒíšŸìˆ˜, ê³ ìœ ë²ˆí˜¸ 
     for(int i = 0; i < genres.size(); i++){
         m[genres[i]] += plays[i]; 
         v.push_back({{genres[i], plays[i]}, i}); 
     }
     
     vector<pair<string, int>> mtv(m.begin(), m.end()); // map to vector 
-    sort(mtv.begin(), mtv.end(), compare1); // Àç»ıÈ½¼ö°¡ ³ôÀº ¼øÀ¸·Î Á¤·Ä 
+    sort(mtv.begin(), mtv.end(), compare1); // ì¬ìƒíšŸìˆ˜ê°€ ë†’ì€ ìˆœìœ¼ë¡œ ì •ë ¬ 
 
-    // Àå¸£ ³»¿¡¼­ Àç»ıÈ½¼ö°¡ ³ôÀº ¼øÀ¸·Î Á¤·Ä, Àç»ıÈ½¼ö°¡ °°À¸¸é °íÀ¯¹øÈ£°¡ ³·Àº ¼øÀ¸·Î Á¤·Ä 
+    // ì¥ë¥´ ë‚´ì—ì„œ ì¬ìƒíšŸìˆ˜ê°€ ë†’ì€ ìˆœìœ¼ë¡œ ì •ë ¬, ì¬ìƒíšŸìˆ˜ê°€ ê°™ìœ¼ë©´ ê³ ìœ ë²ˆí˜¸ê°€ ë‚®ì€ ìˆœìœ¼ë¡œ ì •ë ¬ 
     sort(v.begin(), v.end(), compare2); 
     
-    // Àå¸£ ³»¿¡¼­ °¡Àå ¸¹ÀÌ Àç»ıµÈ 2°îÀÇ °íÀ¯¹øÈ£¸¦ answer¿¡ ÀúÀåÇÑ´Ù. 
+    // ì¥ë¥´ ë‚´ì—ì„œ ê°€ì¥ ë§ì´ ì¬ìƒëœ 2ê³¡ì˜ ê³ ìœ ë²ˆí˜¸ë¥¼ answerì— ì €ì¥í•œë‹¤. 
     for(int i = 0; i < mtv.size(); i++){
         string genresName = mtv[i].first;
         int cnt = 0; 
         
         for(int j = 0; j < v.size(); j++){ 
-            if(genresName == v[j].first.first){ // Àå¸£ ºñ±³ 
-                answer.push_back(v[j].second); // °íÀ¯¹øÈ£ ÀúÀå 
+            if(genresName == v[j].first.first){ // ì¥ë¥´ ë¹„êµ 
+                answer.push_back(v[j].second); // ê³ ìœ ë²ˆí˜¸ ì €ì¥ 
                 cnt++; 
             }
             

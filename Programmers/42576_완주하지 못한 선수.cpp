@@ -3,12 +3,12 @@
 #include <algorithm>
 using namespace std;
 
-// µÎ ¹è¿­ÀÇ Å©±â Â÷ÀÌ´Â 1
+// ë‘ ë°°ì—´ì˜ í¬ê¸° ì°¨ì´ëŠ” 1
 string solution(vector<string> part, vector<string> com) { 
     sort(part.begin(), part.end());
     sort(com.begin(), com.end());
     
-    // Â¦Áö¾î¼­ ºñ±³ 
+    // ì§ì§€ì–´ì„œ ë¹„êµ 
     for(int i = 0; i < com.size(); i++){ 
         if(part[i] != com[i]){ 
             return part[i]; 

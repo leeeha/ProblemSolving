@@ -9,13 +9,13 @@ int solution(vector<vector<string>> clothes) {
     map<string, int> map; 
     
     for(auto e: clothes){
-        map[e[1]]++; // ¿ÊÀÇ Á¾·ù(key)¿Í °³¼ö(value)
+        map[e[1]]++; // ì˜·ì˜ ì¢…ë¥˜(key)ì™€ ê°œìˆ˜(value)
     }
     
     for(auto e: map){ 
-        // ¿ÊÀ» ¼±ÅÃÇÏÁö ¾Ê´Â °æ¿ìÀÇ ¼ö¸¦ Æ÷ÇÔÇÏ¿© +1 
+        // ì˜·ì„ ì„ íƒí•˜ì§€ ì•ŠëŠ” ê²½ìš°ì˜ ìˆ˜ë¥¼ í¬í•¨í•˜ì—¬ +1 
         answer *= (e.second + 1); 
     }
     
-    return answer - 1; // ¸ğµç ¿ÊÀ» ¼±ÅÃÇÏÁö ¾Ê´Â °æ¿ìÀÇ ¼ö´Â Á¦¿ÜÇÏ¹Ç·Î -1 
+    return answer - 1; // ëª¨ë“  ì˜·ì„ ì„ íƒí•˜ì§€ ì•ŠëŠ” ê²½ìš°ì˜ ìˆ˜ëŠ” ì œì™¸í•˜ë¯€ë¡œ -1 
 }
