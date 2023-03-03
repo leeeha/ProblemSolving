@@ -10,7 +10,7 @@ using namespace std;
 int n, m; 
 int arr[MAX]; 
 
-// ¼±ÅÃµÈ m°³¸¦ Ãâ·ÂÇÑ´Ù. 
+// ì„ íƒëœ mê°œë¥¼ ì¶œë ¥í•œë‹¤. 
 void printArray(){ 
 	for(int i = 0; i < m; i++){ 
 		cout << arr[i] << " "; 
@@ -18,14 +18,14 @@ void printArray(){
 	cout << "\n"; 
 }
 
-void dfs(int cnt){ // »ÌÀº °³¼ö 
+void dfs(int cnt){ // ë½‘ì€ ê°œìˆ˜ 
 	if(cnt == m){
 		printArray(); 
 		return; 
 	}
 
 	for(int i = 1; i <= n; i++){ 
-		arr[cnt] = i; // ¼±ÅÃµÈ °ªÀ» ÀúÀåÇÑ´Ù. 
+		arr[cnt] = i; // ì„ íƒëœ ê°’ì„ ì €ì¥í•œë‹¤. 
 		dfs(cnt + 1); 
 	}
 }

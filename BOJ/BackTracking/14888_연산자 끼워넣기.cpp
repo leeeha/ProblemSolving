@@ -14,14 +14,14 @@ int minVal = 1e9, maxVal = -1e9;
 void input(){
 	cin >> n; 
 
-	// ÇÇ¿¬»êÀÚ 
+	// í”¼ì—°ì‚°ì 
 	for(int i = 0; i < n; i++){
 		int x; 
 		cin >> x; 
 		nums.push_back(x); 
 	}
 
-	// ¿¬»êÀÚ °³¼ö 
+	// ì—°ì‚°ì ê°œìˆ˜ 
 	for(int i = 0; i < 4; i++){
 		int x; 
 		cin >> x; 
@@ -39,8 +39,8 @@ void updateMaxMin(int result){
 }
 
 void dfs(int result, int idx){ 
-	// n°³ÀÇ ÇÇ¿¬»êÀÚ¿¡ ´ëÇÑ ÇÑ°¡Áö ¿¬»ê °á°ú°¡ ³ª¿À¸é 
-	// ÃÖ¼Ò, ÃÖ´ë °ª ¾÷µ¥ÀÌÆ® 
+	// nê°œì˜ í”¼ì—°ì‚°ìì— ëŒ€í•œ í•œê°€ì§€ ì—°ì‚° ê²°ê³¼ê°€ ë‚˜ì˜¤ë©´ 
+	// ìµœì†Œ, ìµœëŒ€ ê°’ ì—…ë°ì´íŠ¸ 
 	if(idx == n){ 
 		updateMaxMin(result); 
 		return; 
@@ -49,9 +49,9 @@ void dfs(int result, int idx){
 	for(int i = 0; i < 4; i++){ 
 		if(oper[i] <= 0) continue; 
 
-		oper[i]--; // »óÅÂ º¯È­ (¿¬»êÀÚ »ç¿ë)
+		oper[i]--; // ìƒíƒœ ë³€í™” (ì—°ì‚°ì ì‚¬ìš©)
 		
-		switch(i){ // Àç±Í È£Ãâ 
+		switch(i){ // ì¬ê·€ í˜¸ì¶œ 
 			case 0: 
 				dfs(result + nums[idx], idx + 1); 
 				break; 
@@ -66,7 +66,7 @@ void dfs(int result, int idx){
 				break; 
 		}
 
-		oper[i]++; // »óÅÂ º¹±¸ (´Ù¸¥ ¿¬»êÀÚ »ç¿ë)  
+		oper[i]++; // ìƒíƒœ ë³µêµ¬ (ë‹¤ë¥¸ ì—°ì‚°ì ì‚¬ìš©)  
 	}
 }
 
@@ -76,7 +76,7 @@ int main() {
 
 	input(); 
 
-	// ÇöÀç±îÁöÀÇ ¿¬»ê °á°ú, ´ÙÀ½À¸·Î ¿¬»êÇÒ ¼ıÀÚÀÇ ÀÎµ¦½º 
+	// í˜„ì¬ê¹Œì§€ì˜ ì—°ì‚° ê²°ê³¼, ë‹¤ìŒìœ¼ë¡œ ì—°ì‚°í•  ìˆ«ìì˜ ì¸ë±ìŠ¤ 
 	dfs(nums[0], 1); 
 
 	cout << maxVal << "\n" << minVal; 
