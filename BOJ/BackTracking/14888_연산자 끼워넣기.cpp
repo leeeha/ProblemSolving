@@ -1,59 +1,85 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-using namespace std;
+#include <utility>
+#include <cstring> 
+#include <queue> 
+using namespace std; 
 
-const int MAX = 1e9; // 10억 
-int n;
-int arr[11]; // 2 ≤ N ≤ 11 
-int op[4]; // 각 연산자의 개수를 저장 
-int maxVal = -MAX, minVal = MAX;
+int n; 
+vector<int> nums; 
+vector<int> oper; 
+int minVal = 1e9, maxVal = -1e9; 
 
-// cnt는 현재까지 사용한 연산자의 개수이자, arr 배열의 인덱스로 사용됨. 
-// sum은 연산 결과를 저장함. 
-void dfs(int plus, int minus, int mul, int div, int cnt, int result){
-	// 연산자를 모두 사용했을 때
-	if(cnt == n){
-		maxVal = max(maxVal, result);
-		minVal = min(minVal, result);
+void input(){
+	cin >> n; 
+
+	// 피연산자 
+	for(int i = 0; i < n; i++){
+		int x; 
+		cin >> x; 
+		nums.push_back(x); 
 	}
 
-	// 모든 경우의 수 탐색 
-	if(plus > 0){
-		dfs(plus - 1, minus, mul, div, cnt + 1, result + arr[cnt]);
-	} 
-
-	if(minus > 0){
-		dfs(plus, minus - 1, mul, div, cnt + 1, result - arr[cnt]);
-	}
-
-	if(mul > 0){
-		dfs(plus, minus, mul - 1, div, cnt + 1, result * arr[cnt]);
-	}
-	
-	if(div > 0){
-		dfs(plus, minus, mul, div - 1, cnt + 1, result / arr[cnt]);
+	// 연산자 개수 
+	for(int i = 0; i < 4; i++){
+		int x; 
+		cin >> x; 
+		oper.push_back(x); 
 	}
 }
 
-int main()
-{ 
+void updateMaxMin(int result){ 
+	if(result > maxVal){
+		maxVal = result; 
+	}
+	if(result < minVal){
+		minVal = result; 
+	}
+}
+
+void dfs(int result, int idx){ 
+	// n개의 피연산자에 대한 한가지 연산 결과가 나오면 
+	// 최소, 최대 값 업데이트 
+	if(idx == n){ 
+		updateMaxMin(result); 
+		return; 
+	} 
+
+	for(int i = 0; i < 4; i++){ 
+		if(oper[i] <= 0) continue; 
+
+		oper[i]--; // 상태 변화 (연산자 사용)
+		
+		switch(i){ // 재귀 호출 
+			case 0: 
+				dfs(result + nums[idx], idx + 1); 
+				break; 
+			case 1: 
+				dfs(result - nums[idx], idx + 1); 
+				break; 
+			case 2: 
+				dfs(result * nums[idx], idx + 1); 
+				break;
+			case 3: 
+				dfs(result / nums[idx], idx + 1); 
+				break; 
+		}
+
+		oper[i]++; // 상태 복구 (다른 연산자 사용)  
+	}
+}
+
+int main() {
 	ios::sync_with_stdio(0);
-    cin.tie(0);
+	cin.tie(0);
 
-	cin >> n;
-	for(int i = 0; i < n; i++){
-		cin >> arr[i];
-	}
+	input(); 
 
-	for(int i = 0; i < 4; i++){
-		cin >> op[i];
-	}
+	// 현재까지의 연산 결과, 다음으로 연산할 숫자의 인덱스 
+	dfs(nums[0], 1); 
 
-	dfs(op[0], op[1], op[2], op[3], 1, arr[0]);
-
-	cout << maxVal << "\n";
-	cout << minVal << "\n";
+	cout << maxVal << "\n" << minVal; 
 	
-	return 0;
+    return 0;
 }
