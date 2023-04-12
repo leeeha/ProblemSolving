@@ -1,5 +1,3 @@
-// https://www.acmicpc.net/problem/18311
-
 #include <iostream>
 #include <vector> 
 using namespace std; 
