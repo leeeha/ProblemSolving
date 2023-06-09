@@ -26,7 +26,7 @@ int main() {
 		cin >> lines[i]; 
 	}
 
-	// °áÁ¤ ¹®Á¦¸¦ ¸¸Á·½ÃÅ°´Â xÀÇ ÃÖ´ñ°ªÀ» ±¸ÇÏÀÚ. 
+	// ê²°ì • ë¬¸ì œë¥¼ ë§Œì¡±ì‹œí‚¤ëŠ” xì˜ ìµœëŒ“ê°’ì„ êµ¬í•˜ìž. 
 	ll left = 0, right = 3e9;
 	while(left <= right){
 		ll mid = (left + right) / 2; 
