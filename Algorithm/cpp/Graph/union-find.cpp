@@ -41,6 +41,7 @@ bool isUnion(int x, int y) {
 }
 
 int main() {
+	// 부모 노드 번호 초기화 
 	for (int i = 1; i <= 7; i++)
 		parent[i] = i;
 
