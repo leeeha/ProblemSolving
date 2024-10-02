@@ -2,7 +2,7 @@ import java.util.*
 
 val MAX = 101
 val graph = MutableList<MutableList<Int>>(MAX) { mutableListOf() }
-val visited = MutableList(MAX) { false }
+var visited = MutableList(MAX) { false }
 
 fun bfs(start: Int){
     val q = ArrayDeque<Int>()
@@ -19,6 +19,17 @@ fun bfs(start: Int){
                 q.offer(y)
                 visited[y] = true 
             }
+        }
+    }
+}
+
+fun dfs(x: Int){
+    visited[x] = true
+    print("$x ")
+    
+    for(y in graph[x]){
+        if(!visited[y]){
+            dfs(y)
         }
     }
 }
@@ -51,4 +62,9 @@ fun main() {
     graph[8].add(7)
     
 	bfs(1) // 1 2 3 8 7 4 5 6 
+
+    println()
+    visited = MutableList(MAX) { false }
+
+    dfs(1) // 1 2 7 6 8 3 4 5 
 }
