@@ -1,5 +1,3 @@
-package org.example
-
 import java.util.PriorityQueue
 
 val MAX = 20001
