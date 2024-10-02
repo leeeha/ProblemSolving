@@ -1,4 +1,4 @@
-class CombiPerm {
+class CombPerm {
     val MAX = 10
     val arr = MutableList(MAX){0} // 선택된 원소 저장 
     val selected = MutableList(MAX){false} // 원소 선택 여부 
