@@ -27,7 +27,7 @@ int BinarySearch(int n, int* arr, int key){
 }
 
 int main(){
-	int arr[10] = {0, 4, 9, 2, 1, 8, 6, 7, 5, 3};
+	int arr[10] = {0, 4, 9, 2, 1, 7, 6, 8, 5, 3};
 
 	// 순차 탐색
 	int a = LinearSearch(10, arr, 9);
@@ -38,7 +38,7 @@ int main(){
 
 	// 이진 탐색
 	int b = BinarySearch(10, arr, 7);
-	cout << b << "\n"; // 7
+	cout << b << "\n"; // 7 (정렬된 배열에서의 인덱스)
 
 	return 0;
 }
