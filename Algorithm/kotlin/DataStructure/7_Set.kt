@@ -1,7 +1,8 @@
 fun main() {
-    // Set 
+    // Set (중복을 허용하지 않으며, 순서가 없는 집합)
     val fruits = setOf("apple", "banana", "cherry", "banana")
-    println(fruits) // [apple, banana, cherry]
+    println(fruits) // [apple, banana, cherry] 
+    println(fruits.size) // 3
     println(fruits.contains("apple")) // true
     println(fruits.elementAt(2)) // cherry
     
