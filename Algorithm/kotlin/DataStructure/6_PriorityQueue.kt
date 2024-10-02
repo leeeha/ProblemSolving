@@ -23,4 +23,12 @@ fun main() {
         print(maxHeap.poll())
     }
     println()
+
+    val pq = PriorityQueue<Product>(compareByDescending{ it.price })
+    pq.add(Product(name = "apple", price = 5000))
+    pq.add(Product(name = "banana", price = 3000))
+    pq.add(Product(name = "strawberry", price = 9000))
+    println(pq.peek().name) // strawberry
 }
+
+data class Product(val name: String, val price: Int)
