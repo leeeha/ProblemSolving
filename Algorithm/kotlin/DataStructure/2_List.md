@@ -2,28 +2,37 @@
 
 ```kotlin 
 fun main() {
+    // 생성 
     val list = listOf(1, 2, 3, 4, 5)
     val list1 = emptyList<String>()
     val list2 = listOfNotNull(2, 4, null, 5) // [2, 4, 5]
     
-    val list3 = listOf("apple", "banana", "cherry", "banana")
-    println(list3.indexOf("banana")) // 1 
-    println(list3.lastIndexOf("banana")) // 3 
+    // 접근 
+    val fruits = listOf("apple", "banana", "cherry", "banana")
+    println(fruits.first()) // apple
+    println(fruits.last()) // banana
+    println(fruits.indexOf("banana")) // 1 
+    println(fruits.lastIndexOf("banana")) // 3
+
+    println(fruits.getOrElse(4) { "unknown fruit" })
+    println(fruits.getOrNull(4) ?: "unknown fruit")
+
+    println(fruits.contains("apple")) // true
+    println(fruits.containsAll(listOf("apple", "cherry"))) // true
     
-    println(list3.contains("apple")) // true
-    println(list.containsAll(listOf(1, 7))) // false
-    
-    val iterator = list3.listIterator()
+    // 순회
+    val iterator = fruits.listIterator()
     while (iterator.hasNext()) {
         print("${iterator.next()} ") // apple banana cherry banana
     }
     println()
 
     while (iterator.hasPrevious()) {
-        print("${iterator.previous()} ")  // banana cherry banana apple
+        print("${iterator.previous()} ") // banana cherry banana apple
     }
     println()
     
+    // subList 
     val list4 = listOf(1, 2, 3, 4, 5, 6, 7)
     println(list4.subList(2, 5)) // [3, 4, 5]
 }
@@ -41,17 +50,20 @@ fun main() {
     nums.remove(4) // 가장 첫번째로 발견된 요소 삭제 
     println(nums) // [1, 2, 3, 5, 4, 4]
     
-    nums.removeAt(3)
+    nums.removeAt(3) // 인덱스 기준으로 삭제 
     println(nums) // [1, 2, 3, 4, 4]
     
-    nums.addAll(listOf(6, 7, 8))
-    println(nums) // [1, 2, 3, 4, 4, 6, 7, 8]
+    nums.addAll(listOf(6, 7, 8, 9))
+    println(nums) // [1, 2, 3, 4, 4, 6, 7, 8, 9]
     
     nums.removeAll(listOf(3, 4))
-    println(nums) // [1, 2, 6, 7, 8]
+    println(nums) // [1, 2, 6, 7, 8, 9]
+
+    nums.removeIf { it % 2 == 0 }
+    println(nums) // [1, 7, 9]
     
-    nums.retainAll(listOf(6, 7))
-    println(nums) // [6, 7]
+    nums.retainAll(listOf(1, 7))
+    println(nums) // [1, 7]
 }
 ```
 
@@ -89,16 +101,18 @@ fun main() {
 
 ```kotlin
 fun main() {
-    // Map<K, List<T>>
-    println((0..10).toList().groupBy { it % 2 }) // {0=[0, 2, 4, 6, 8, 10], 1=[1, 3, 5, 7, 9]}
-    println((0..10).toList().groupBy { it % 2 }[0]) // [0, 2, 4, 6, 8, 10]
+    // groupBy: Map<K, List<T>>
+    // {even=[0, 2, 4, 6, 8, 10], odd=[1, 3, 5, 7, 9]}
+    println((0..10).toList().groupBy { if (it % 2 == 0) "even" else "odd" }) 
+    // [0, 2, 4, 6, 8, 10]
+    println((0..10).toList().groupBy { it % 2 }[0]) 
     
-    // List<Pair<T, R>>
+    // zip: List<Pair<T, R>>
     val strs = listOf("a", "b", "c")
 	val nums = listOf(1, 2, 3, 4)
 	println(strs.zip(nums)) // [(a, 1), (b, 2), (c, 3)]
     
-    // 중복 제거 
+    // distinct: 중복 제거 
 	println(listOf(1, 2, 3, 4, 5, 1, 2, 3, 6).distinct()) // [1, 2, 3, 4, 5, 6]
     println(listOf(1, 2, 3, 4, 5, 6).distinctBy { it % 3 }) // [1, 2, 3]
 }
