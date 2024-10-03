@@ -1,6 +1,6 @@
 import java.util.*
 
-class GraphSearch {
+class GraphSearchSolution {
     val MAX = 101
     val graph = MutableList<MutableList<Int>>(MAX) { mutableListOf() }
     var visited = MutableList(MAX) { false }
