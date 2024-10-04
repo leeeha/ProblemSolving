@@ -1,3 +1,4 @@
+```kotlin
 fun main() {
     // Set (중복을 허용하지 않으며, 순서가 없는 집합)
     val fruits = setOf("apple", "banana", "cherry", "banana")
@@ -33,3 +34,4 @@ fun main() {
     val sortedSet3 = sortedSetOf(Comparator { a: String, b: String -> a.length - b.length }, "apple", "banana", "kiwi")
     println(sortedSet3) // [kiwi, apple, banana]
 } 
+```

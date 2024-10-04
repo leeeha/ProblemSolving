@@ -1,3 +1,4 @@
+```kotlin
 import java.util.*
 
 fun main() {
@@ -32,3 +33,4 @@ fun main() {
 }
 
 data class Product(val name: String, val price: Int)
+```

@@ -1,3 +1,4 @@
+```kotlin
 import java.util.*
 
 fun main() {
@@ -16,3 +17,4 @@ fun main() {
     
     println(dq.size) // 0
 }
+```

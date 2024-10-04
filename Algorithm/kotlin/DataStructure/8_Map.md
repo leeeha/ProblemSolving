@@ -1,3 +1,4 @@
+```kotlin
 fun main() {
     // Map 
     val map = mapOf<String, Int>("math" to 98, "english" to 80, "science" to 75)
@@ -35,3 +36,4 @@ fun main() {
 } 
 
 data class Fruit(val name: String, val quantity: Int)
+```

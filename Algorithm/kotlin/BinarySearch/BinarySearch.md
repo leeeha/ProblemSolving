@@ -1,3 +1,4 @@
+```kotlin
 fun binarySearch(nums: List<Int>, key: Int): Int {
     var left = 0
     var right = nums.size - 1
@@ -18,3 +19,4 @@ fun main(){
     nums.sort() // 0 1 2 3 4 5 6 7 8 9 
     println(binarySearch(nums, 3)) // 3 
 }
+```

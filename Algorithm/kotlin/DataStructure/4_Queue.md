@@ -1,3 +1,4 @@
+```kotlin 
 /**
  * add(): 큐가 꽉 차면 예외 발생 
  * offer(): 큐가 꽉 차면 false 반환
@@ -22,3 +23,4 @@ fun main() {
         queue.poll()
     }
 }
+```

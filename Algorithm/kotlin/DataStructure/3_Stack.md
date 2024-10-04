@@ -1,3 +1,4 @@
+```kotlin
 import java.util.*
 
 fun main() {
@@ -18,3 +19,4 @@ fun main() {
         stack.pop()
     }
 }
+```
