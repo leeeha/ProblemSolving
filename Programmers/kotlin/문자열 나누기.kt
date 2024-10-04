@@ -21,7 +21,7 @@ class Solution {
                 counting[1]++
             }
             
-            // 개수 비교 
+            // 개수 비교 & 마지막 문자 예외 처리 
             if(counting[0] == counting[1] || idx == s.lastIndex){
                 answer++
                 splitted = true 
