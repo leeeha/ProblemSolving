@@ -3,7 +3,7 @@
 **문자 검색**
 
 - `charAt(index: Int)` : 해당 위치의 문자 반환
-- `indexOf(char: Char/String)` : 특정 문자나 문자열의 첫번째 위치 반환
+- `indexOf(char: Char/String, startIndex: Int = 0, ignoreCase: Boolean = false)` : 특정 문자나 문자열의 첫번째 위치 반환
 - `lastIndexOf(char: Char/String)` : 특정 문자나 문자열의 마지막 위치 반환
 - `startsWith(prefix: String)` : 특정 접두사로 시작하는지 확인
 - `endsWith(suffix: String)` : 특정 접미사로 끝나는지 확인
