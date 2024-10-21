@@ -74,6 +74,9 @@ fun main() {
 - `deleteCharAt(index: Int)` : 특정 위치의 문자 삭제
 - `replace(startIndex: Int, endIndex: Int, str: String)` : 특정 범위의 문자열을 다른 문자열로 대체
 - `reverse()` : 문자열을 역순으로 변환
+- `substring(int start, int end)` : [start, end) 범위의 부분 문자열 추출 
+- `setCharAt(int index, String s)` : index 위치의 문자를 s로 변경
+- `setLength(int length)` : 문자열 길이 변경 (현재보다 길게 설정하면 공백으로 채워지고, 현재보다 짧게 설정하면 문자 삭제)
 
 ```kotlin 
 fun main() {
