@@ -22,10 +22,11 @@
 - `equals(other: String)` : 문자열의 내용이 같은지 비교 (동등성)
 - `compareTo(other: String)`: 문자를 아스키 코드로 변환하여 크기 비교 (같으면 0, 크면 양수, 작으면 음수 반환)
 
-**그외 유용한 함수**
+**그외**
 
 - `joinToString(separator: String)` : 리스트나 배열을 문자열로 변환할 때 사용
 - `repeat(n: Int)` : 문자열을 n번 반복한 결과 반환
+- `length()`: 문자열 길이 반환 
 
 ```kotlin
 fun main() {
@@ -70,6 +71,7 @@ fun main() {
 
 - `append(value: Any)` : 문자열의 끝에 값을 추가
 - `insert(offset: Int, value: Any)` : 특정 위치에 값 삽입
+- `length()`: 문자열 길이 반환 
 - `delete(startIndex: Int, endIndex: Int)` : 특정 범위의 문자열 삭제
 - `deleteCharAt(index: Int)` : 특정 위치의 문자 삭제
 - `replace(startIndex: Int, endIndex: Int, str: String)` : 특정 범위의 문자열을 다른 문자열로 대체
