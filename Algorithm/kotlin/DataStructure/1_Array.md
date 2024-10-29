@@ -34,9 +34,9 @@ fun main() {
 
 ```kotlin
 fun main() {
-    val r1 = Array(4, { it + 1 })
-    val r2 = Array(4, { it + 5 })
-    val r3 = Array(4, { it + 9 })
+    val r1 = Array(4, { it + 1 }) // 1 2 3 4
+    val r2 = Array(4, { it + 5 }) // 5 6 7 8
+    val r3 = Array(4, { it + 9 }) // 9 10 11 12 
     
     val arr = arrayOf(r1, r2, r3)
 	for(row in arr){
