@@ -1,11 +1,5 @@
 ```kotlin 
-fun main() {
-    divisorNumberOf(15)
-    divisorNumberOf(50)
-    divisorNumberOf(9)
-}
-
-fun divisorNumberOf(n: Int): Int {
+fun countDivisorOf(n: Int): Int {
     var cnt = 0
     
     for(i in 1..n){
