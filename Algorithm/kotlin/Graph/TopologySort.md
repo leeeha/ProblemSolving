@@ -5,7 +5,7 @@ import java.util.ArrayDeque
 var V = 0
 var E = 0
 lateinit var indegree: MutableList<Int>
-lateinit var graph: MutableList<MutableList<Int>> // 사이클이 없는 비순환 그래프
+lateinit var graph: MutableList<MutableList<Int>> // 유향 비순환 그래프 (Directed Acyclic Graph)
 val answer = mutableListOf<Int>()
 
 fun main() {
