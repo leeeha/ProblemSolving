@@ -24,13 +24,16 @@
 
 **그외**
 
+- `length`: 문자열 길이 반환 
 - `joinToString(separator: String)` : 리스트나 배열을 문자열로 변환할 때 사용
 - `repeat(n: Int)` : 문자열을 n번 반복한 결과 반환
-- `length()`: 문자열 길이 반환 
 
 ```kotlin
 fun main() {
     val str = "Hello, Kotlin!"
+
+    // 문자열 길이 
+    println(str.length) // 14 
 
     // 문자 검색
     println("char at index 1: ${str[1]}")  // e
@@ -69,9 +72,9 @@ fun main() {
 
 # StringBuilder
 
+- `length`: 문자열 길이 반환 
 - `append(value: Any)` : 문자열의 끝에 값을 추가
 - `insert(offset: Int, value: Any)` : 특정 위치에 값 삽입
-- `length()`: 문자열 길이 반환 
 - `delete(startIndex: Int, endIndex: Int)` : 특정 범위의 문자열 삭제
 - `deleteCharAt(index: Int)` : 특정 위치의 문자 삭제
 - `replace(startIndex: Int, endIndex: Int, str: String)` : 특정 범위의 문자열을 다른 문자열로 대체
@@ -83,6 +86,9 @@ fun main() {
 ```kotlin 
 fun main() {
     val sb = StringBuilder("Hello")
+
+    // 문자열 길이 
+    println(sb.length) // 5 
 
     // 문자열 추가
     sb.append(", Kotlin!")
