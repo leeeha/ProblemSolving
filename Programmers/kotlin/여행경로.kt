@@ -1,57 +1,50 @@
-import java.util.*
-
-/**
-주어진 항공권을 이용해서 만들 수 있는 모든 경로 중에서 
-알파벳 순으로 가장 앞서는 것을 정답으로! 
-출발 노드는 ICN (노드 최대 1만개)
+/*
+주어진 항공권을 모두 사용하는 여행경로 구하기 
+가능한 경로가 2개 이상이면, 알파벳 순서가 앞서는 경로 리턴 
+시작 노드는 ICN으로 고정
+한번 방문한 간선은 재방문하지 않도록 visited 배열 사용 
 */
 class Solution {
-    var answer = arrayListOf<String>()
-    lateinit var graph: Array<Array<String>>
-    lateinit var visited: BooleanArray
-    val temp = arrayListOf<String>()
-    var N = 0
-    var findFirstCase = false
+    lateinit var graph: Array<Array<String>> 
+    lateinit var visited: BooleanArray 
+    val answer = mutableListOf<String>()
+    var foundFirstCase = false
+    var ticketSize = 0
     
     fun solution(tickets: Array<Array<String>>): Array<String> {
-        // 전역 변수 초기화 
-        N = tickets.size
+        ticketSize = tickets.size
         graph = tickets
-        visited = BooleanArray(tickets.size) { false }
+        visited = BooleanArray(ticketSize) { false }
         
-        // 목적지 문자열에 따라 사전순 정렬
-        tickets.sortBy { ticket -> ticket[1] }
+        // 목적지 문자열에 따라 정렬 
+        graph.sortBy { ticket -> ticket[1] }
         
         dfs(0, "ICN")
         
         return answer.toTypedArray()
     }
     
-    fun dfs(cnt: Int, now: String){
-        if(cnt == N && !findFirstCase){
-            findFirstCase = true
-            
-            // 현재 경로의 모든 노드 추가 
-            answer.addAll(temp) 
-            
-            // 마지막 도착 노드 추가 
-            answer.add(now) 
-            return
+    fun dfs(idx: Int, now: String){
+        if(idx == ticketSize && !foundFirstCase){
+            foundFirstCase = true
+            answer.add(now)
+            return 
         }
         
-        for(i in graph.indices){
-            val start = graph[i][0]
-            val end = graph[i][1]
+        for(ticketIdx in graph.indices){
+            val start = graph[ticketIdx][0]
+            val end = graph[ticketIdx][1]
             
-            if(start == now && !visited[i]){
-                // 현재 간선에 대한 방문 처리 
-                visited[i] = true
-                temp.add(start) // 시작 노드 저장 
-                dfs(cnt + 1, end) // 도착 노드로 이동 
+            if(start == now && !visited[ticketIdx]){
+                visited[ticketIdx] = true
+                answer.add(start)
                 
-                // 다음 경우의 수를 위한 상태 복구 
-                visited[i] = false
-                temp.removeLast()
+                dfs(idx + 1, end)
+                
+                if(foundFirstCase) return 
+                
+                visited[ticketIdx] = false
+                answer.removeLast()
             }
         }
     }
