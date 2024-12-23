@@ -1,60 +1,67 @@
 ```kotlin
-import java.util.PriorityQueue
+package org.example
 
-val MAX = 20001
+import java.util.*
+
+typealias PII = Pair<Int, Int>
+
 val INF = Int.MAX_VALUE
 var V = 0
 var E = 0
-var startNode = 0
-val dist = MutableList(MAX) { INF }
-val graph = MutableList(MAX) { mutableListOf<Pair<Int, Int>>() }
+var start = 0
+lateinit var dist: IntArray
+lateinit var graph: Array<MutableList<PII>>
 
 fun input() = with(System.`in`.bufferedReader()) {
-    val numbers = readLine().split(" ").map { it.toInt() }
-    V = numbers[0]
-    E = numbers[1]
-    startNode = readLine().toInt()
+    val nums = readLine().split(" ").map { it.toInt() }
+    V = nums[0]
+    E = nums[1]
+    start = readLine().toInt()
+
+    dist = IntArray(V + 1) { INF }
+    graph = Array(V + 1) { mutableListOf() }
 
     repeat(E) {
         val (u, v, w) = readLine().split(" ").map { it.toInt() }
-        graph[u].add(Pair(v, w))
+        graph[u].add(v to w)
     }
 }
 
 fun dijkstra() {
     // 노드 번호, 거리 (거리 기준으로 최소 힙)
-    val pq = PriorityQueue<Pair<Int, Int>>(compareBy { it.second })
-    pq.offer(Pair(startNode, 0))
-    dist[startNode] = 0
+    val pq = PriorityQueue<PII>(compareBy { it.second })
 
-    while(pq.isNotEmpty()){
-        val curNum = pq.peek().first
-        val curDist = pq.peek().second
-        pq.poll()
+    // 시작 노드에 대한 초기화
+    pq.offer(start to 0)
+    dist[start] = 0
+
+    while (!pq.isEmpty()) {
+        val now = pq.poll()
+        val curNode = now.first
+        val curDist = now.second
 
         // 이미 확정된 최단 경로는 무시 
-        if(curDist > dist[curNum]) continue
+        if (curDist > dist[curNode]) continue
 
-        // 인접 노드 확인 
-        for(pair in graph[curNum]){
-            val nextNum = pair.first
-            val nextDist = pair.second
+        // 현재 노드의 인접 노드 확인 
+        for (edge in graph[curNode]) {
+            val nextNode = edge.first
+            val nextDist = edge.second
             val totalDist = curDist + nextDist
 
-            // 최단 거리 테이블 갱신 
-            if(dist[nextNum] > totalDist){
-                dist[nextNum] = totalDist
-                pq.offer(Pair(nextNum, totalDist))
+            if (dist[nextNode] > totalDist) {
+                dist[nextNode] = totalDist
+                pq.offer(nextNode to totalDist)
             }
         }
     }
 }
 
-fun printResult(){
-    for(i in 1..V){
-        if(dist[i] == INF){
+fun printResult() {
+    for (i in 1..V) {
+        if (dist[i] == INF) {
             println("INF")
-        }else{
+        } else {
             println(dist[i])
         }
     }
