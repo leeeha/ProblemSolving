@@ -1,6 +1,4 @@
 ```kotlin
-package org.example
-
 import java.util.*
 
 typealias PII = Pair<Int, Int>
@@ -43,12 +41,13 @@ fun dijkstra() {
         // 이미 확정된 최단 경로는 무시 
         if (curDist > dist[curNode]) continue
 
-        // 현재 노드의 인접 노드 확인 
+        // 현재 노드의 인접 노드들에 대해서 
         for (edge in graph[curNode]) {
             val nextNode = edge.first
             val nextDist = edge.second
             val totalDist = curDist + nextDist
 
+            // 현재 노드를 거쳐가는 게 비용이 더 적은지 검사 
             if (dist[nextNode] > totalDist) {
                 dist[nextNode] = totalDist
                 pq.offer(nextNode to totalDist)
