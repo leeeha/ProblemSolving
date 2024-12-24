@@ -11,8 +11,7 @@ fun bfs(start: Int){
     visited[start] = true
     
     while(!q.isEmpty()){
-        val x = q.peek()
-        q.pop()
+        val x = q.poll()
         print("$x ")
         
         for(y in graph[x]){
